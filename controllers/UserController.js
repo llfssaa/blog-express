@@ -1,4 +1,4 @@
-import UserModel from "../models/User";
+import UserModel from "../models/User.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {validationResult} from "express-validator";
@@ -36,7 +36,6 @@ export const register = async (req,res)=>{
             token
         })
     } catch (err) {
-        console.log(err)
         res.status(500).json({
             message: 'Failed to register'
         })
@@ -92,6 +91,8 @@ export const getMe = async (req, res)=>{
         res.json(userData)
 
     }  catch (err) {
-
+        res.status(500).json({
+            message: 'No Access'
+        })
     }
 }
